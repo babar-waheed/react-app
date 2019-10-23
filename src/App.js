@@ -18,33 +18,16 @@ class App extends Component {
         ],
         showPerson: false
     };
-    //You can find a list of supported events here: https://reactjs.org/docs/events.html#supported-events
-    //Mouse Events, Pointer Events, Form events etc..
-    switchNameHandler = (counter = 0, name1, name2) => {
-        //Don't do this: this.state.person[0].name = 'Andrew';
-        this.setState({
-            counter: counter,
-            person: [
-                { name: name1, age: '28'},
-                { name: name2, age: '29'}
-            ]
-        })
-    };
-
-    changeNameHandler = (event, counter = 5) => {
-        //Don't do this: this.state.person[0].name = 'Andrew';
-        this.setState({
-            counter: counter,
-            person: [
-                { name: 'Paul', age: '28'},
-                { name: event.target.value, age: '29'}
-            ]
-        })
-    };
 
     toggleHandler = () => {
         const doesShow = this.state.showPerson;
         this.setState({showPerson: !doesShow});
+    };
+
+    deletePersonHandler = (personIndex) => {
+        const person = this.state.person;
+        person.splice(personIndex, 1);
+        this.setState({person: person});
     };
 
     render() {
@@ -54,18 +37,14 @@ class App extends Component {
         if(this.state.showPerson){
             person = (
                 <div>
-                    <Person
-                        name={this.state.person[0].name}
-                        age={this.state.person[0].age}
-                    />
-                    <Person
-                        name={this.state.person[1].name}
-                        age={this.state.person[1].age}
-                        click={this.switchNameHandler.bind(this, '3', 'Ash', 'Andrew')}
-                        change={this.changeNameHandler}
-                    >
-                        My Hobbies: Coding
-                    </Person>
+                    { this.state.person.map((person, index) => {
+                            return <Person
+                                click={() => this.deletePersonHandler(index)}
+                                name={person.name}
+                                age={person.age}
+                            />
+                        }
+                    )}
                 </div>
             )
         }
