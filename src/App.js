@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
+//Stateful vs Stateless Components
+//Stateful manages state in both class based / functional based hooks
+//Stateless Person.js is stateless component also called dumps,
+// presentational components. Its a good practice to use Stateless components.
+
 class App extends Component {
     //Understanding and Using State
     //Whilst props allow you to pass data down the component tree (and hence trigger an UI update), state is used to change the component, well, state from within. Changes to state also trigger an UI update.
