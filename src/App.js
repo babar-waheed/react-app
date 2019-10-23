@@ -15,7 +15,8 @@ class App extends Component {
         person: [
             { name: 'Paul', age: '28'},
             { name: 'John', age: '29'}
-        ]
+        ],
+        showPerson: false
     };
     //You can find a list of supported events here: https://reactjs.org/docs/events.html#supported-events
     //Mouse Events, Pointer Events, Form events etc..
@@ -41,6 +42,11 @@ class App extends Component {
         })
     };
 
+    toggleHandler = () => {
+        const doesShow = this.state.showPerson;
+        this.setState({showPerson: !doesShow});
+    };
+
     render() {
         return (
         //JSX Restrictions
@@ -48,19 +54,23 @@ class App extends Component {
         //JSX must have one root element
         <div className="App">
             <h1>I'm a React App {this.state.counter}</h1>
-            <button onClick={this.switchNameHandler.bind(this, '2', 'Andrew', 'Ash')}>Switch Name</button>
-            <Person
-                name={this.state.person[0].name}
-                age={this.state.person[0].age}
-            />
-            <Person
-                name={this.state.person[1].name}
-                age={this.state.person[1].age}
-                click={this.switchNameHandler.bind(this, '3', 'Ash', 'Andrew')}
-                change={this.changeNameHandler}
-            >
-                My Hobbies: Coding
-            </Person>
+            <button onClick={this.toggleHandler}>Toggle Person</button>
+            { this.state.showPerson === true ?
+                <div>
+                    <Person
+                        name={this.state.person[0].name}
+                        age={this.state.person[0].age}
+                    />
+                    <Person
+                        name={this.state.person[1].name}
+                        age={this.state.person[1].age}
+                        click={this.switchNameHandler.bind(this, '3', 'Ash', 'Andrew')}
+                        change={this.changeNameHandler}
+                    >
+                        My Hobbies: Coding
+                    </Person>
+                </div>  : null
+            }
         </div>
     );
 
