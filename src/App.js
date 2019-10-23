@@ -48,14 +48,11 @@ class App extends Component {
     };
 
     render() {
-        return (
-        //JSX Restrictions
-        //class can't be used. React is converting the html behind the scene.
-        //JSX must have one root element
-        <div className="App">
-            <h1>I'm a React App {this.state.counter}</h1>
-            <button onClick={this.toggleHandler}>Toggle Person</button>
-            { this.state.showPerson === true ?
+
+        let person = null;
+
+        if(this.state.showPerson){
+            person = (
                 <div>
                     <Person
                         name={this.state.person[0].name}
@@ -69,8 +66,17 @@ class App extends Component {
                     >
                         My Hobbies: Coding
                     </Person>
-                </div>  : null
-            }
+                </div>
+            )
+        }
+        return (
+        //JSX Restrictions
+        //class can't be used. React is converting the html behind the scene.
+        //JSX must have one root element
+        <div className="App">
+            <h1>I'm a React App {this.state.counter}</h1>
+            <button onClick={this.toggleHandler}>Toggle Person</button>
+            {person}
         </div>
     );
 
