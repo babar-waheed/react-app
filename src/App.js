@@ -19,13 +19,13 @@ class App extends Component {
     };
     //You can find a list of supported events here: https://reactjs.org/docs/events.html#supported-events
     //Mouse Events, Pointer Events, Form events etc..
-    switchNameHandler = () => {
+    switchNameHandler = (counter, name1, name2) => {
         //Don't do this: this.state.person[0].name = 'Andrew';
         this.setState({
-            counter: 2,
+            counter: counter,
             person: [
-                { name: 'Andrew', age: '25'},
-                { name: 'Ash', age: '35'}
+                { name: name1, age: 'NA'},
+                { name: name2, age: 'NA'}
             ]
         })
     };
@@ -37,9 +37,18 @@ class App extends Component {
         //JSX must have one root element
         <div className="App">
             <h1>I'm a React App {this.state.counter}</h1>
-            <button onClick={this.switchNameHandler}>Switch Name</button>
-            <Person name={this.state.person[0].name} age={this.state.person[0].age}/>
-            <Person name={this.state.person[1].name} age={this.state.person[1].age}> My Hobbies: Coding </Person>
+            <button onClick={this.switchNameHandler.bind(this, '10', 'Andrew', 'Ash')}>Switch Name</button>
+            <Person
+                name={this.state.person[0].name}
+                age={this.state.person[0].age}
+            />
+            <Person
+                name={this.state.person[1].name}
+                age={this.state.person[1].age}
+                click={this.switchNameHandler.bind(this, '1', 'Person1', 'Person2')}
+            >
+                My Hobbies: Coding
+            </Person>
         </div>
     );
 
