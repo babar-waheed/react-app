@@ -15,7 +15,14 @@ class App extends Component {
     //You can find a list of supported events here: https://reactjs.org/docs/events.html#supported-events
     //Mouse Events, Pointer Events, Form events etc..
     switchNameHandler = () => {
-        console.log('Was clicked');
+        //Don't do this: this.state.person[0].name = 'Andrew';
+        this.setState({
+            counter: 2,
+            person: [
+                { name: 'Andrew', age: '25'},
+                { name: 'Ash', age: '35'}
+            ]
+        })
     };
 
     render() {
