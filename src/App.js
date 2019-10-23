@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Person from './Person/Person';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       //JSX must have one root element
       <div className="App">
         <h1>I'm a React App</h1>
+        <Person />
       </div>
     );
 
