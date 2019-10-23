@@ -1,7 +1,7 @@
 import React from 'react';
 
 const person = () => {
-    return <p>Person.js</p>
+    return <p>Random Number: {Math.floor(Math.random() * 10)}</p>
 };
 
 export default person;
