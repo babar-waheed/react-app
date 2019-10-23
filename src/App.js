@@ -19,13 +19,24 @@ class App extends Component {
     };
     //You can find a list of supported events here: https://reactjs.org/docs/events.html#supported-events
     //Mouse Events, Pointer Events, Form events etc..
-    switchNameHandler = (counter, name1, name2) => {
+    switchNameHandler = (counter = 0, name1, name2) => {
         //Don't do this: this.state.person[0].name = 'Andrew';
         this.setState({
             counter: counter,
             person: [
-                { name: name1, age: 'NA'},
-                { name: name2, age: 'NA'}
+                { name: name1, age: '28'},
+                { name: name2, age: '29'}
+            ]
+        })
+    };
+
+    changeNameHandler = (event, counter = 5) => {
+        //Don't do this: this.state.person[0].name = 'Andrew';
+        this.setState({
+            counter: counter,
+            person: [
+                { name: 'Paul', age: '28'},
+                { name: event.target.value, age: '29'}
             ]
         })
     };
@@ -37,7 +48,7 @@ class App extends Component {
         //JSX must have one root element
         <div className="App">
             <h1>I'm a React App {this.state.counter}</h1>
-            <button onClick={this.switchNameHandler.bind(this, '10', 'Andrew', 'Ash')}>Switch Name</button>
+            <button onClick={this.switchNameHandler.bind(this, '2', 'Andrew', 'Ash')}>Switch Name</button>
             <Person
                 name={this.state.person[0].name}
                 age={this.state.person[0].age}
@@ -45,7 +56,8 @@ class App extends Component {
             <Person
                 name={this.state.person[1].name}
                 age={this.state.person[1].age}
-                click={this.switchNameHandler.bind(this, '1', 'Person1', 'Person2')}
+                click={this.switchNameHandler.bind(this, '3', 'Ash', 'Andrew')}
+                change={this.changeNameHandler}
             >
                 My Hobbies: Coding
             </Person>
