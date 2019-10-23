@@ -12,6 +12,12 @@ class App extends Component {
             { name: 'John', age: '29'}
         ]
     };
+    //You can find a list of supported events here: https://reactjs.org/docs/events.html#supported-events
+    //Mouse Events, Pointer Events, Form events etc..
+    switchNameHandler = () => {
+        console.log('Was clicked');
+    };
+
     render() {
         return (
         //JSX Restrictions
@@ -19,6 +25,7 @@ class App extends Component {
         //JSX must have one root element
         <div className="App">
             <h1>I'm a React App {this.state.counter}</h1>
+            <button onClick={this.switchNameHandler}>Switch Name</button>
             <Person name={this.state.person[0].name} age={this.state.person[0].age}/>
             <Person name={this.state.person[1].name} age={this.state.person[1].age}> My Hobbies: Coding </Person>
         </div>
