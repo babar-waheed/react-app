@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import Style from './App.css';
 import Person from './Person/Person';
 
 //Stateful vs Stateless Components
@@ -53,16 +53,6 @@ class App extends Component {
 
     render() {
 
-        const style = {
-            backgroundColor: '#000',
-            color: '#fff',
-            border: 'none',
-            padding: '8px',
-            cursor: 'pointer',
-            fontSize: '16px',
-            outline: 'none'
-        };
-
         let persons = null;
         if(this.state.showPersons){
             persons = (
@@ -85,10 +75,10 @@ class App extends Component {
         //class can't be used. React is converting the html behind the scene.
         //JSX must have one root element
 
-        <div className="App">
+        <div className={Style.App}>
             <h1>I'm a React App {this.state.counter}</h1>
             <button
-                style={style}
+                className={Style.button}
                 onClick={this.toggleHandler}>Toggle Person
             </button>
             {persons}
