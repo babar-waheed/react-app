@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 //Stateful vs Stateless Components
@@ -61,11 +60,7 @@ class App extends Component {
             padding: '8px',
             cursor: 'pointer',
             fontSize: '16px',
-            outline: 'none',
-            ':hover': {
-                backgroundColor: 'lightgreen',
-                color: '#000',
-            }
+            outline: 'none'
         };
 
         let persons = null;
@@ -89,16 +84,16 @@ class App extends Component {
         //JSX Restrictions
         //class can't be used. React is converting the html behind the scene.
         //JSX must have one root element
-        <StyleRoot>
-            <div className="App">
-                <h1>I'm a React App {this.state.counter}</h1>
-                <button
-                    style={style}
-                    onClick={this.toggleHandler}>Toggle Person
-                </button>
-                {persons}
-            </div>
-        </StyleRoot>
+
+        <div className="App">
+            <h1>I'm a React App {this.state.counter}</h1>
+            <button
+                style={style}
+                onClick={this.toggleHandler}>Toggle Person
+            </button>
+            {persons}
+        </div>
+
     );
 
     //return(<div className="App"><h1>Hello!</h1></div>);
@@ -108,4 +103,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
