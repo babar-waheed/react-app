@@ -21,7 +21,8 @@ const App = (props) => {
                 { name: 'Andrew', age: '25'},
                 { name: 'Ash', age: '35'}
             ]
-        })
+        });
+
         setCounterState({counter: 2});
     };
 

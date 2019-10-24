@@ -5,16 +5,35 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
-    state = {
-        counter: 0,
-        persons: [
-            { id: 1, name: 'Paul', age: '45'},
-            { id: 2, name: 'John', age: '40'},
-            { id: 3, name: 'Andrew', age: '35'},
-            { id: 4, name: 'Babs', age: '36'}
-        ],
-        showPersons: false
-    };
+    constructor(props){
+
+        console.log('[App.js] constructor()', props);
+
+        super(props);
+        this.state = {
+            counter: 0,
+            persons: [
+                { id: 1, name: 'Paul', age: '45'},
+                { id: 2, name: 'John', age: '40'},
+                { id: 3, name: 'Andrew', age: '35'},
+                { id: 4, name: 'Babs', age: '36'}
+            ],
+            showPersons: false
+        };
+    }
+
+    componentDidMount() {
+        console.log('[App.js componentDidMount]');
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('[App.js shouldComponentUpdate]');
+        return true;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('[App.js componentDidUpdate]');
+    }
 
     toggleHandler = () => {
         const personsCount = this.state.persons.length;
@@ -28,7 +47,6 @@ class App extends Component {
         persons.splice(personIndex, 1);
         this.setState({persons: persons});
         this.setState({counter: persons.length});
-        console.log(this.state);
     };
 
     nameChangeHandler = (event, id) => {
@@ -48,6 +66,8 @@ class App extends Component {
     };
 
     render() {
+
+        console.log('[App.js] render()');
 
         let persons = null;
         if(this.state.showPersons){
