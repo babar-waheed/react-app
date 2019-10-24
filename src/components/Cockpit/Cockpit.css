@@ -1,0 +1,25 @@
+.Cockpit{
+    text-align: center;
+}
+.Cockpit button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+}
+
+.Cockpit button:hover{
+    background-color: lightblue;
+    color: #000;
+}
+
+.Cockpit h1{
+    font-size: 20px;
+}
+
+.Cockpit button.bold{
+    font-weight: bold;
+}

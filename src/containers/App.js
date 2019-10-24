@@ -1,44 +1,41 @@
 import React, { Component } from 'react';
 import Style from '../containers/App.css';
-import Person from '../components/Persons/Persons';
-
-//Stateful vs Stateless Components
-//Stateful manages state in both class based / functional based hooks
-//Stateless Persons.js is stateless component also called dumps,
-// presentational components. Its a good practice to use Stateless components.
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-    //Understanding and Using State
-    //Whilst props allow you to pass data down the component tree (and hence trigger an UI update), state is used to change the component, well, state from within. Changes to state also trigger an UI update.
+
     state = {
-        counter: 1,
+        counter: 0,
         persons: [
-            { id: 1, name: 'Paul', age: '28'},
-            { id: 2, name: 'John', age: '29'}
+            { id: 1, name: 'Paul', age: '45'},
+            { id: 2, name: 'John', age: '40'},
+            { id: 3, name: 'Andrew', age: '35'},
+            { id: 4, name: 'Babs', age: '36'}
         ],
         showPersons: false
     };
 
     toggleHandler = () => {
+        const personsCount = this.state.persons.length;
         const doesShow = this.state.showPersons;
         this.setState({showPersons: !doesShow});
+        !doesShow ? this.setState({counter: personsCount}) : this.setState({counter: 0});
     };
 
     deletePersonHandler = (personIndex) => {
         const persons = [...this.state.persons];
-        //Or const persons = this.state.persons.slice();
-        //const persons = this.state.persons; //Bad practice since its a reference type
         persons.splice(personIndex, 1);
         this.setState({persons: persons});
+        this.setState({counter: persons.length});
         console.log(this.state);
     };
 
     nameChangeHandler = (event, id) => {
-        //find the index
+
         const personIndex = this.state.persons.findIndex(p => {
             return p.id === id;
         });
-        //create an object
         const person = {
             ...this.state.persons[personIndex]
         };
@@ -48,50 +45,30 @@ class App extends Component {
         persons[personIndex] = person;
         this.setState({persons: persons});
 
-        // console.log(persons)
     };
 
     render() {
 
         let persons = null;
         if(this.state.showPersons){
-            persons = (
-                <div>
-                    { this.state.persons.map((person, index) => {
-                            return <Person
-                                click={() => this.deletePersonHandler(index)}
-                                name={person.name}
-                                age={person.age}
-                                key={person.id}
-                                change={(event) => this.nameChangeHandler(event, person.id)}
-                            />
-                        }
-                    )}
-                </div>
-            )
+            persons = <Persons
+            persons={this.state.persons}
+            deletePerson={this.deletePersonHandler}
+            changeName={this.nameChangeHandler}/>
+
         }
 
         return (
-        //JSX Restrictions
-        //class can't be used. React is converting the html behind the scene.
-        //JSX must have one root element
-
-        <div className={Style.App}>
-            <h1 >I'm a React App {this.state.counter}</h1>
-            <button
-                className={Style.bold}
-                onClick={this.toggleHandler}>Toggle Person
-            </button>
-            {persons}
-        </div>
-
-    );
-
-    //return(<div className="App"><h1>Hello!</h1></div>);
-    //Above code is equal to below
-   //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hello!'));
-
-  }
+            <div className={Style.App}>
+                <Cockpit
+                    title={this.props.appTitle}
+                    counter={this.state.counter}
+                    toggleHandler={this.toggleHandler}
+                />
+                {persons}
+            </div>
+        );
+    }
 }
 
 export default App;
