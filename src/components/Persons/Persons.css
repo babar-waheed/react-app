@@ -1,7 +1,13 @@
 .Person{
     background: rgba(0, 221, 117, 0.17);
-    width: 60%;
+    width: 80%;
     margin: 15px auto;
     display: block;
     padding: 15px;
+}
+
+@media (min-width: 700px) {
+    .Person{
+        width: 60%;
+    }
 }

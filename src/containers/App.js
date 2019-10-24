@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Style from './App.css';
-import Person from './Person/Person';
+import Style from '../containers/App.css';
+import Person from '../components/Persons/Persons';
 
 //Stateful vs Stateless Components
 //Stateful manages state in both class based / functional based hooks
-//Stateless Person.js is stateless component also called dumps,
+//Stateless Persons.js is stateless component also called dumps,
 // presentational components. Its a good practice to use Stateless components.
 
 class App extends Component {

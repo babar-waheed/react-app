@@ -1,7 +1,8 @@
 import React from 'react';
-import Style from './Person.css';
+import Style from './Persons.css';
 
-const person = (props) => {
+console.log(Style);
+const persons = (props) => {
 
     return (
         <div className={Style.Person}>
@@ -14,4 +15,4 @@ const person = (props) => {
     )
 };
 
-export default person;
+export default persons;
