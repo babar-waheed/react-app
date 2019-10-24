@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.button {
+.App button {
   background-color: #000;
   color: #fff;
   border: none;
@@ -10,4 +10,17 @@
   cursor: pointer;
   font-size: 16px;
   outline: none;
+}
+
+.App button:hover{
+  background-color: lightblue;
+  color: #000;
+}
+
+.App h1{
+  font-size: 20px;
+}
+
+.App button.bold{
+  font-weight: bold;
 }

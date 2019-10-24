@@ -70,15 +70,16 @@ class App extends Component {
                 </div>
             )
         }
+
         return (
         //JSX Restrictions
         //class can't be used. React is converting the html behind the scene.
         //JSX must have one root element
 
         <div className={Style.App}>
-            <h1>I'm a React App {this.state.counter}</h1>
+            <h1 >I'm a React App {this.state.counter}</h1>
             <button
-                className={Style.button}
+                className={Style.bold}
                 onClick={this.toggleHandler}>Toggle Person
             </button>
             {persons}
