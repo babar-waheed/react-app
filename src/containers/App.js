@@ -14,10 +14,10 @@ class App extends Component {
         this.state = {
             counter: 0,
             persons: [
-                { id: 1, name: 'Paul', age: '45'},
-                { id: 2, name: 'John', age: '40'},
-                { id: 3, name: 'Andrew', age: '35'},
-                { id: 4, name: 'Babs', age: '36'}
+                { id: 1, name: 'Paul', age: 45},
+                { id: 2, name: 'John', age: 40},
+                { id: 3, name: 'Andrew', age: 35},
+                { id: 4, name: 'Babs', age: 36}
             ],
             showPersons: false,
             showCockpit: true,
