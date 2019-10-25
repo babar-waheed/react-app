@@ -5,6 +5,17 @@ import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
 
 class Person extends Component {
+
+    constructor(props){
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+
+    componentDidMount() {
+        // this.inputElement.focus();
+        this.inputElementRef.current.focus();
+    }
+
     render(){
         console.log('[Person.js render()]');
 
@@ -14,13 +25,21 @@ class Person extends Component {
                 {/*children refers to any element inside the opening and closing tags e.g below*/}
                 {/*<Person name="John" age="34"> My Hobbies: Coding </Person>*/}
                 <p key="i2">{this.props.children}</p>
-                <input key="i3" onChange={this.props.change} type="text" name="name" value={this.props.name} />
+                <input
+                    key="i3"
+                    //ref={(inputEl) => {this.inputElement = inputEl}}
+                    ref={this.inputElementRef}
+                    onChange={this.props.change}
+                    type="text"
+                    name="name"
+                    value={this.props.name}
+                />
             </Aux>
         )
     }
 }
 
-Person.PropTypes = {
+Person.propTypes = {
     click: PropTypes.func,
     name: PropTypes.string,
     age: PropTypes.number,
