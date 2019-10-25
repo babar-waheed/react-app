@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import Style from './Person.css';
 import Aux from '../../../hoc/Aux';
-import WithClass from '../../../hoc/WithClass';
+import withClass from '../../../hoc/withClass';
 
 class Person extends Component {
     render(){
@@ -12,11 +12,11 @@ class Person extends Component {
                 <p onClick={this.props.click}>I'm {this.props.name} and I'm {this.props.age} years old.</p>
                 {/*children refers to any element inside the opening and closing tags e.g below*/}
                 {/*<Person name="John" age="34"> My Hobbies: Coding </Person>*/}
-                <p>{this.props.children}</p>
-                <input onChange={this.props.change} type="text" name="name" value={this.props.name} />
+                <p key="i2">{this.props.children}</p>
+                <input key="i3" onChange={this.props.change} type="text" name="name" value={this.props.name} />
             </Aux>
         )
     }
 }
 
-export default Person;
+export default withClass(Person, Style.Person);
