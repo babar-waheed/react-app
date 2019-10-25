@@ -1,10 +1,11 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import Style from "./Cockpit.css";
 import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
 
     const toggleButtonRef = useRef(null);
+    const authContext = useContext(AuthContext);
 
     useEffect(()=> {
         toggleButtonRef.current.click();
@@ -25,15 +26,7 @@ const Cockpit = (props) => {
                 className={Style.bold}
                 onClick={props.toggleHandler}>Toggle Person
             </button>
-
-            <AuthContext.Consumer>
-                {(context) => {
-                    console.log("context", context);
-                    return <button onClick={context.login}>Login</button>
-                    }
-                }
-            </AuthContext.Consumer>
-
+            <button onClick={authContext.login}>Login</button>
         </div>
     )
 };
