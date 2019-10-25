@@ -1,3 +1,8 @@
 .App {
   text-align: center;
 }
+
+.App .bgRed{
+  background-color: red;
+  color: #fff;
+}

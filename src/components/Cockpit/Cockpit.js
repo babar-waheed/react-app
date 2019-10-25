@@ -11,7 +11,9 @@ const Cockpit = (props) => {
     }, []); //[] = load only once [props.person] = load every time person object is changed.
     return(
         <div className={Style.Cockpit}>
-            <h1 >{props.title} {props.counter}</h1>
+            <h1 >{props.title}</h1>
+            <p>Click the button below to display List of persons</p>
+            <p>Total: {props.counter}</p>
             <button
                 className={Style.bold}
                 onClick={props.toggleHandler}>Toggle Person

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Person from "./Person/Person";
 
-class Persons extends Component{
+class Persons extends PureComponent{
 
     // static getDerivedStateFromProps(props, state){
     //     console.log('[Persons.js getDerivedStateFromProps]');
@@ -11,10 +11,13 @@ class Persons extends Component{
     //UNSAFE componentWillReceiveProps
     //UNSAFE componentWillUpdate
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log('[Persons.js shouldComponentUpdate]');
-        return true;
-    }
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     console.log('[Persons.js shouldComponentUpdate]');
+    //     return nextProps.persons !== this.props.persons
+    //         || nextProps.deletePerson !== this.props.deletePerson;
+    //
+    //     //OR You can use Pure Component
+    // }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js getSnapshotBeforeUpdate]');
