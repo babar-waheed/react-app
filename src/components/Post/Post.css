@@ -1,5 +1,5 @@
 .Post {
-    width: 100px;
+    width: calc(50% - 32px);
     padding: 16px;
     text-align: center;
     border: 1px solid #eee;
@@ -8,7 +8,6 @@
     box-sizing: border-box;
     cursor: pointer;
 }
-
 .Post:hover,
 .Post:active {
     background-color: #C0DDF5;

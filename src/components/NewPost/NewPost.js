@@ -7,7 +7,7 @@ class NewPost extends Component {
         title: '',
         content: '',
         author: 'Max'
-    }
+    };
 
     render () {
         return (
