@@ -4,6 +4,9 @@ import Button from '../../UI/Button/Button';
 import classes from './CheckoutSummary.css';
 
 const checkoutSummary = (props) => {
+
+    console.log(props);
+
     return (
         <div className={classes.CheckoutSummary}>
             <h1>We hope it tastes well!</h1>
@@ -13,10 +16,10 @@ const checkoutSummary = (props) => {
 
             <Button
                 btnType="Danger"
-                clicked>CANCEL</Button>
+                clicked={props.checkoutCancelled}>CANCEL</Button>
             <Button
                 btnType="Success"
-                clicked>CONTINUE</Button>
+                clicked={props.checkoutContinued}>CONTINUE</Button>
         </div>
 
     );
