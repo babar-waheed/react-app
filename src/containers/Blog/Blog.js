@@ -5,6 +5,9 @@ import Posts from '../../containers/Blog/Posts/Posts';
 import { Route, NavLink, Switch, Redirect } from "react-router-dom";
 import './Blog.css';
 
+//React Suspense
+//const Posts = React.lazy(() => import('../../containers/Blog/Posts/Posts'));
+
 const AsyncNewPost = asyncComponent(() => {
     return import('./NewPost/NewPost');
 });
@@ -46,12 +49,22 @@ class Blog extends Component {
                 <Switch>
                     { this.state.auth ? <Route path="/new-post" component={AsyncNewPost}/>
                     : null }
-                    <Route path="/posts" component={Posts} />
+                    <Route
+                        path="/posts"
+                        // render={() => (
+                        //     <Suspense
+                        //         fallback={<div>Loading..</div>}
+                        //     ><Posts />
+                        //     </Suspense>
+                        // )}
+                        component={Posts}
+
+                    />
                     <Route render={() => <h1>Note Found!</h1>} />
-                    {/*<Redirect*/}
-                    {/*    from="/"*/}
-                    {/*    to="/posts"*/}
-                    {/*/>*/}
+                    <Redirect
+                        from="/"
+                        to="/posts"
+                    />
                     {/*<Route path="/" component={Posts} />*/}
                 </Switch>
             </div>
