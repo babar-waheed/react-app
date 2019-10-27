@@ -27,6 +27,9 @@ class BurgerBuilder extends Component{
     };
 
     componentDidMount() {
+
+        console.log(this.props);
+
         this.setState({
             burgerLoading: true
         });
@@ -103,35 +106,48 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler = () => {
 
-        this.setState({
-            loading: true
+        // this.setState({
+        //     loading: true
+        // });
+        //
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'John Citizen',
+        //         address: {
+        //             street: 'Virtual Street',
+        //             zip: '9000'
+        //         }
+        //     }
+        // };
+        //
+        // axios.post("/orders.json", order)
+        //     .then(response => {
+        //         this.setState({
+        //             loading: false,
+        //             purchasing: false
+        //         });
+        //     })
+        //     .catch(error => {
+        //         this.setState({
+        //             loading: false,
+        //             purchasing: false
+        //         });
+        //     })
+
+        const queryParam = [];
+        for (let i in this.state.ingredients){
+            queryParam.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        }
+
+        const queryString = queryParam.join("&");
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
         });
 
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'John Citizen',
-                address: {
-                    street: 'Virtual Street',
-                    zip: '9000'
-                }
-            }
-        };
-
-        axios.post("/orders.json", order)
-            .then(response => {
-                this.setState({
-                    loading: false,
-                    purchasing: false
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    loading: false,
-                    purchasing: false
-                });
-            })
     };
 
     render() {
