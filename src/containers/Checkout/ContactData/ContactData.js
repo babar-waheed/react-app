@@ -64,8 +64,15 @@ class ContactData extends Component{
     };
 
     orderHandler = (event) => {
+
         event.preventDefault();
-        console.log(this.props.ingredients);
+
+        const orderData = {};
+        for(let identifier in this.state.orderForm){
+            if(this.state.orderForm.hasOwnProperty(identifier)){
+                orderData[identifier] = this.state.orderForm[identifier].value;
+            }
+        }
 
         this.setState({
             loading: true
@@ -73,17 +80,8 @@ class ContactData extends Component{
 
         const order = {
             ingredients: this.props.ingredients,
-            price: this.props.totalPrice,
-            customer: {
-                name: 'John Citizen',
-                email: 'john@citizen.com',
-                address: {
-                    street: 'Virtual Street',
-                    zip: '9000',
-                    country: 'Australia'
-                }
-            },
-            deliveryMethod: 'Express'
+            price: this.props.price,
+            orderData: orderData
         };
 
         axios.post("/orders.json", order)
