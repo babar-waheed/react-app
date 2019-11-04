@@ -57,51 +57,39 @@ class BurgerBuilder extends Component{
     };
 
     purchaseContinueHandler = () => {
-
-        const queryParam = [];
-        for (let i in this.state.ingredients){
-            queryParam.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-        }
-
-        queryParam.push("price=" + this.state.totalPrice);
-        const queryString = queryParam.join("&");
-
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+        this.props.history.push('/checkout');
 
     };
 
     render() {
-        console.log("this.props.ings", this.props.ings);
+        console.log("this.props.ings", this.props.ingredients);
         const disabledInfo = {
-            ...this.props.ings,
+            ...this.props.ingredients,
         };
 
         for(let key in disabledInfo){
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
 
-        const orderSummary = !this.state.loading && this.props.ings ?
+        const orderSummary = !this.state.loading && this.props.ingredients ?
 
             <OrderSummary
-                ingredients={this.props.ings}
+                ingredients={this.props.ingredients}
                 cancelled={this.closeModal}
                 continue={this.purchaseContinueHandler}
                 price={this.props.totalPrice}
             /> :
             <Spinner /> ;
 
-        const burgerComponents = !this.state.burgerLoading && this.props.ings ?
+        const burgerComponents = !this.state.burgerLoading && this.props.ingredients ?
             <Aux>
-                <Burger ingredients={this.props.ings}/>
+                <Burger ingredients={this.props.ingredients}/>
                 <BuildControls
                     addIngredient={this.props.onIngredientAdded}
                     removeIngredient={this.props.onIngredientRemoved}
                     disabled={disabledInfo}
                     price={this.props.totalPrice}
-                    purchasable={this.updatePurchaseState(this.props.ings)}
+                    purchasable={this.updatePurchaseState(this.props.ingredients)}
                     ordered={this.purchaseHandler}
                 />
             </Aux>
@@ -124,7 +112,7 @@ class BurgerBuilder extends Component{
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
+        ingredients: state.ingredients,
         totalPrice: state.totalPrice
     }
 };
